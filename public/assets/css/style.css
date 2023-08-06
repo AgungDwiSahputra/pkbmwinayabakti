@@ -1,0 +1,117 @@
+
+a{
+    text-decoration: none;
+}
+
+.btn{
+    width: auto;
+    height: auto;
+    padding: 10px 25px;
+    border-radius: 5px;
+    border: none;
+}
+.btn-primary-dark{
+    background-color: #40513B !important;
+}
+.btn-primary{
+    background-color: #609966 !important;
+}
+.btn-primary-outline{
+    background-color: transparent !important;
+    border: 1px solid #609966 !important;
+    color: #609966 !important;
+}
+.btn-primary-less{
+    background-color: #9DC08B !important;
+}
+.btn-primary-very-less{
+    background-color: #EDF1D6 !important;
+}
+.btn-primary-dark:hover{
+    background-color: #2b3627 !important;
+}
+.btn-primary:hover{
+    background-color: #4d8152 !important;
+}
+.btn-primary-outline:hover{
+    background-color: #4d8152 !important;
+    color: #FFF !important;
+}
+.btn-primary-less:hover{
+    background-color: #8cb07a !important;
+}
+.btn-primary-very-less:hover{
+    background-color: #d9ddc0 !important;
+}
+
+.bg-primary-dark{
+    background-color: #40513B !important;
+}
+.bg-primary{
+    background-color: #609966 !important;
+}
+.bg-primary-less{
+    background-color: #9DC08B !important;
+}
+.bg-primary-very-less{
+    background-color: #EDF1D6 !important;
+}
+
+
+/* NAVBAR */
+.navbar{
+    width: 100%;
+    max-width: 1800px;
+    height: 106px;
+    padding: 0 120px;
+    margin: 0 auto;
+}
+.navbar .nav-item .nav-link{
+    font-weight: 400;
+}
+.navbar .nav-item .nav-link.active{
+    font-weight: 600;
+}
+/* END NAVBAR */
+
+/* HERO */
+#hero {
+    height: 100vh;
+    max-height: 1000px;
+    padding: 114px 120px;
+    position: relative;
+    top: -106px;
+    max-width: 1800px;
+    margin: 0 auto;
+    margin-bottom: -106px;
+}
+#hero h1{
+    font-size: 56px;
+}
+#hero .hero-copy{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+#hero .hero-image{
+    position: absolute;
+    right: 0;
+    bottom:0;
+    width: 43%;
+}
+/* END HERO */
+
+/* PENDIDIKAN */
+#pendidikan{
+    width: 100%;
+    height: auto;
+    padding: 30px 120px;
+}
+#pendidikan .box-pendidikan{
+    padding: 17px 25px;
+    border-radius: 5px;
+}
+#pendidikan .box-pendidikan:hover{
+    background-color: #dce0c0 !important;
+}
+/* END PENDIDIKAN */

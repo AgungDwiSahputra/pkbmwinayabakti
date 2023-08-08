@@ -45,7 +45,7 @@
                 <a class="nav-link" href="#kontak">Kontak</a>
                 </li>
             </ul>
-            <a href="javascript:;">
+            <a href="{{ route('register') }}">
                 <button type="button" class="btn btn-primary fw-600 d-flex align-items-center justify-content-between">GABUNG SEKARANG <svg xmlns="://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short ms-2" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                   </svg></button>
@@ -61,8 +61,10 @@
                         <p class="text-primary fw-600 mb-4">PUSAT KEGIATAN BELAJAR MASYARAKAT</p>
                         <h1 class="fw-700">Kualitas pendidikan terbaik ada di PKBM <span class="text-primary">Winaya Bakti</span></h1>
                         <p class="fw-400 mt-4">Menginspirasi, Membangun, dan Memimpin!</p>
-                        <a href="javascript:;">
+                        <a href="{{ route('register') }}">
                             <button class="btn btn-primary fw-600 me-2 mb-2 mb-lg-0">GABUNG SEKARANG</button>
+                        </a>
+                        <a href="#tentang">
                             <button class="btn btn-primary-outline fw-600">Tentang Sekolah</button>
                         </a>
                     </div>
@@ -278,11 +280,11 @@
         </section>
     </div>
 
-    {{-- Framework CSS Bootstrap --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    
+    {{-- Framework CSS Bootstrap --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
     <!-- Flickity -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

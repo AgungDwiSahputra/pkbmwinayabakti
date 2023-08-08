@@ -57,6 +57,34 @@ a{
     background-color: #EDF1D6 !important;
 }
 
+/* FLICKITY SETTINGS */
+.flickity-button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: #609966;
+    transition: all 0.5s ease;
+}
+.flickity-prev-next-button.previous {
+    left: -55px;
+    top: 60%;
+}
+.flickity-prev-next-button.next {
+    right: -20px;
+    top: 60%;
+}
+.flickity-page-dots .dot.is-selected {
+    background-color: #609966;
+}
+.flickity-page-dots .dot {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(96, 153, 102, 0.40);
+    border: 3px solid #609966;
+    margin: 0 3px;
+}
+/* END FLICKITY SETTINGS */
+
 
 /* NAVBAR */
 .navbar{
@@ -72,10 +100,30 @@ a{
 .navbar .nav-item .nav-link.active{
     font-weight: 600;
 }
+@media (max-width:992px){
+    .navbar{
+        padding: 0 20px;
+    }
+    .navbar-collapse.show{
+        background-color: white;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 100px;
+        padding: 20px 40px;
+        box-shadow: 0px 5px 10px rgba(0,0,0,0.25);
+    }
+}
+@media (max-width:768px){
+    .navbar-collapse.show{
+        padding: 15px 30px;
+    }
+}
 /* END NAVBAR */
 
 /* HERO */
 #hero {
+    max-width: 1800px;
     height: 100vh;
     max-height: 1000px;
     padding: 114px 120px;
@@ -99,10 +147,34 @@ a{
     bottom:0;
     width: 43%;
 }
+@media (max-width:992px){
+    #hero{
+        padding: 114px 20px;
+        height: 40vh;
+    }
+    #hero .hero-copy {
+        position: relative;
+        top: 0;
+        transform: unset;
+    }
+    #hero h1{
+        font-size: 36px;
+    }
+}
+@media (max-width:768px){
+    #hero {
+        height: 70vh;
+    }
+    #hero h1,#hero h1 span{
+        font-size: 32px;
+    }
+}
 /* END HERO */
 
 /* PENDIDIKAN */
 #pendidikan{
+    max-width: 1800px;
+    margin: 0 auto;
     width: 100%;
     height: auto;
     padding: 30px 120px;
@@ -114,4 +186,133 @@ a{
 #pendidikan .box-pendidikan:hover{
     background-color: #dce0c0 !important;
 }
+@media (max-width:992px){
+    #pendidikan{
+        padding: 30px 20px;
+    }
+}
+@media (max-width:768px){
+    #pendidikan .box-pendidikan {
+        padding: 10px 0px;
+    }
+}
 /* END PENDIDIKAN */
+
+/* PELATIHAN */
+#pelatihan{
+    max-width: 1800px;
+    margin: 0 auto;
+    background: linear-gradient(179deg, rgba(0, 163, 255, 0.80) 0%, rgba(0, 81, 237, 0.80) 100%);
+    padding: 40px 120px;
+}
+#pelatihan .list-pelatihan .rounded-circle{
+    border: 3px solid #FFF;
+    object-fit: cover;
+}
+#pelatihan .list-pelatihan p{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+}
+@media (max-width:992px){
+    #pelatihan{
+        padding: 20px 20px;
+    }
+    #pelatihan h3{
+        font-size: 20px;
+    }
+    #pelatihan .list-pelatihan .rounded-circle{
+        width: 85px;
+        height: 85px;
+    }
+    #pelatihan .list-pelatihan p{
+        font-size: 12px;
+    }
+}
+@media (max-width:768px){
+    #pelatihan{
+        padding: 30px 20px;
+    }
+    #pelatihan .list-pelatihan{
+        margin: 0 15px;
+        width: 90px;
+    }
+    #pelatihan .list-pelatihan .rounded-circle{
+        width: 80px;
+        height: 80px;
+    }
+}
+/* END PELATIHAN */
+
+/* PRESTASI */
+#prestasi{
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 50px 120px;
+    padding-bottom: 70px;
+}
+#prestasi .card{
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    margin: 0 10px;
+}
+#prestasi .card img{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+}
+@media (max-width:992px){
+    #prestasi{
+        padding: 50px 20px;
+    }
+}
+/* END PRESTASI */
+
+/* TENTANG */
+#tentang{
+    max-width: 1800px;
+    margin: 0 auto;
+    height: 630px;
+    padding: 50px 120px;
+    background: #EDF1D6;
+    position: relative;
+}
+#tentang img{
+    position: absolute;
+    left: 5%;
+    transform: translate(5%,0);
+    bottom: 0;
+    width: 33%;
+}
+@media (max-width:992px){
+    #tentang{
+        padding: 50px 20px;
+        height: 510px;
+    }
+    #tentang .copy-tentang{
+        margin-top: 5% !important;
+    }
+}
+@media (max-width:768px){
+    #tentang .misi li{
+        font-size: 12px;
+    }
+    .flickity-prev-next-button.previous {
+        left: 0;
+    }
+    .flickity-prev-next-button.next {
+        right: 0;
+    }
+}
+/* END TENTANG */
+
+/* KONTAK */
+#kontak{
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 50px 120px;
+    background-color: #9DC08B;
+}
+@media (max-width:992px){
+    #kontak{
+        padding: 50px 20px;
+    }
+}
+/* END KONTAK */

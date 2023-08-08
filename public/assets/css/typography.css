@@ -29,3 +29,15 @@
 .fw-400{
     font-weight: 400;
 }
+
+@media (max-width:768px){
+    p{
+        font-size: 12px;
+    }
+    span{
+        font-size:12px;
+    }
+    button{
+        font-size: 14px;
+    }
+}

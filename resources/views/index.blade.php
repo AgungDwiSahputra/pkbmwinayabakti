@@ -255,7 +255,7 @@
                         </div>
                         <div class="kontak-sekolah">
                             <h5 class="fw-700">Kontak Sekolah</h5>
-                            <p class="fw-400">No. HP : 085659944490 <span class="d-lg-block d-none">     |     </span> Email : pkbmwinayabaktiofficial@gmail.com</p>
+                            <p class="fw-400">No. HP : 085659944490 <span class="d-lg-inline-block d-none">     |     </span> Email : pkbmwinayabaktiofficial@gmail.com</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 ps-lg-5">
@@ -288,13 +288,42 @@
 
     <!-- Flickity -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    
+    @if(session('error'))
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Terdapat Kesalahan',
+                    text: {{session('error')}},
+                    customClass: {
+                        confirmButton: 'btn btn-primary-less'
+                    }
+                });
+            })
+        </script>
+    @else
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: {{session('success')}},
+                    customClass: {
+                        confirmButton: 'btn btn-primary-less'
+                    }
+                });
+            })
+        </script>
+
+    @endif
 
     {{-- CUSTOM JavaScript --}}
     <script>
         $('#prestasi .flickity-effect').flickity({
             cellAlign: 'left',
             contain: true,
-            freeScroll: true,
+            wrapAround: true,
             prevNextButtons: false,
             pageDots: true
         });

@@ -26,6 +26,11 @@ a{
     border: 1px solid #9DC08B !important;
     color: #9DC08B !important;
 }
+@media (max-width:992px){
+    .btn-primary-less-outline{
+        font-size: 12px;
+    }
+}
 .btn-primary-less{
     background-color: #9DC08B !important;
 }
@@ -365,7 +370,7 @@ a{
     font-size: 12px;
     font-weight: 600;
 }
-#pendaftaran #content form .data .uploaded_ktp{
+#pendaftaran #content form .data .uploaded_ktp img{
     /* width: 161px; */
     max-height: 97px;
     /* border: 2px solid #9DC08B; */
@@ -396,5 +401,11 @@ a{
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
     background-color: #9DC08B !important;
+}
+
+@media (max-width:768px){
+    #pendaftaran #content .container {
+        padding: 40px 20px;
+    }
 }
 /* END PENDAFTARAN */

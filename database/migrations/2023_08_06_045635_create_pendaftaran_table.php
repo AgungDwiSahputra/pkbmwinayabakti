@@ -15,8 +15,8 @@ class CreatePendaftaranTable extends Migration
     {
         Schema::create('pendaftaran', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nisn');
-            $table->foreign('nisn')->references('nisn')->on('siswa');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('siswa');
             $table->string('status');
             $table->unsignedBigInteger('id_admin');
             $table->foreign('id_admin')->references('id')->on('user_admin');

@@ -67,113 +67,149 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
+                        <div class="d-lg-none d-flex align-items-center justify-content-center mb-3">
+                            <img width="58" height="58" class="me-2" src="{{ asset('assets/icon.png') }}" alt="Logo PKBM Winaya bakti">
+                            <img width="58" height="58" src="{{ asset('assets/icon-2.png') }}" alt="Logo 2 PKBM Winaya bakti">
+                        </div>
                         <h5 class="text-center fw-700 mb-5">FORMULIR PENDAFTARAN<br>SISWA/I BARU PKBM WINAYA BAKTI<br>TAHUN AJARAN 2023/2024</h5>
+                        <div class="d-lg-none d-block pilihan-paket mt-5">
+                            <h6 class="fw-700 text-center">PILIHAN PAKET</h6>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button class="btn-paket btn btn-primary-less-outline text-white w-100 mb-2 me-2 fw-600 active" data-value="a">PAKET A</button>
+                                <button class="btn-paket btn btn-primary-less-outline text-white w-100 mb-2 me-2 fw-600" data-value="b">PAKET B</button>
+                                <button class="btn-paket btn btn-primary-less-outline text-white w-100 mb-2 fw-600" data-value="c">PAKET C</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data" id="form-data">
                     @csrf
                     <input id="input_paket" type="text" name="paket" value="a" hidden>
                     <div id="proses-data" class="d-flex flex-row align-items-center">
                         <div id="data-1" class="w-100">
                             <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12 pe-4">
+                                <div class="col-lg-6 col-md-12 col-sm-12 pe-lg-4 p-0 px-2">
                                     <div class="row g-3">
                                         <div class="col-12">
-                                            <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
+                                            <label for="nama_lengkap" class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" autofocus required id="nama_lengkap" name="nama_lengkap" placeholder="Masukan Nama Lengkap">
+                                            @error('nama')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="email" class="form-label">Email</label>
+                                            <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" autofocus required id="email" name="email" placeholder="Masukan Email">
+                                            @error('email')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="no_hp" class="form-label">Nomor Handphone</label>
+                                            <label for="no_hp" class="form-label">Nomor Handphone<span class="text-danger">*</span></label>
                                             <input type="number" class="form-control" autofocus required id="no_hp" name="no_hp" placeholder="Masukan Nomor Handphone">
+                                            @error('no_hp')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="provinsi" class="form-label">Provinsi</label>
-                                            <select id="provinsi" class="form-select select2" aria-label="Provinsi" name="provinsi" required>
-                                                <option value="1" selected>Jawa Barat</option>
-                                                <option value="2">One</option>
-                                                <option value="3">Two</option>
-                                                <option value="4">Three</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="kota" class="form-label">Kota/Kabupaten</label>
-                                            <select id="kota" class="form-select select2" aria-label="Kota atau Kabupaten" name="kota" required>
-                                                <option value="1" selected>Karawang</option>
-                                                <option value="2">One</option>
-                                                <option value="3">Two</option>
-                                                <option value="4">Three</option>
+                                        <div class="col-12">
+                                            <label for="kota" class="form-label">Kabupaten / Kota<span class="text-danger">*</span></label>
+                                            <select id="kota" class="form-select select2" aria-label="kota" name="kota" required>
+                                                @foreach($kabupaten as $kab)
+                                                    @php
+                                                        $kota = $kab->id.'-'.$kab->provinsi->id;
+                                                    @endphp 
+                                                    <option value="{{ $kota }}">{{ $kab->nama .', '.$kab->provinsi->nama }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-9">
-                                            <label for="alamat" class="form-label">Alamat Lengkap</label>
+                                            <label for="alamat" class="form-label">Alamat Lengkap<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" autofocus required name="alamat_lengkap" id="alamat" placeholder="Masukan Alamat Lengkap">
+                                            @error('alamat_lengkap')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="kode_pos" class="form-label">Kode Pos</label>
+                                            <label for="kode_pos" class="form-label">Kode Pos<span class="text-danger">*</span></label>
                                             <input type="number" class="form-control" autofocus required id="kode_pos" name="kode_pos" placeholder="Kode Pos">
+                                            @error('kode_pos')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="kewarganegaraan" class="form-label">Kewarganegaraan</label>
+                                            <label for="kewarganegaraan" class="form-label">Kewarganegaraan<span class="text-danger">*</span></label>
                                             <select id="kewarganegaraan" class="form-select select2" aria-label="Kewarganegaraan" name="kewarganegaraan" required>
-                                                <option value="1" selected>Warga Negara Indonesia</option>
-                                                <option value="2">One</option>
-                                                <option value="3">Two</option>
-                                                <option value="4">Three</option>
+                                                <option value="wni" selected>Warga Negara Indonesia</option>
+                                                <option value="wna">Warga Negara Asing</option>
                                             </select>
                                         </div>
                                         <div class="col-12">
-                                            <label for="pendidikan_akhir" class="form-label">Pendidikan Akhir</label>
+                                            <label for="pendidikan_akhir" class="form-label">Pendidikan Akhir<span class="text-danger">*</span></label>
                                             <select id="pendidikan_akhir" class="form-select select2" aria-label="Pendidikan Akhir" name="pendidikan_akhir" required>
-                                                <option value="1" selected>SMA</option>
-                                                <option value="2">One</option>
-                                                <option value="3">Two</option>
-                                                <option value="4">Three</option>
+                                                <option value="sma" selected>SMA</option>
+                                                <option value="smp">SMP</option>
+                                                <option value="sd">SD</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 ps-4">
+                                <div class="col-lg-6 col-md-12 col-sm-12 ps-lg-4 p-0 px-2 mt-lg-0 mt-3">
                                     <div class="row g-3">
                                         <div class="col-12">
-                                            <label for="nisn" class="form-label">NISN</label>
-                                            <input type="number" class="form-control" autofocus required id="nisn" name="nisn" placeholder="Masukan Nomor Induk Siswa Nasional">
+                                            <label for="nisn" class="form-label">NISN<span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" autofocus required id="nisn" name="nisn" placeholder="Masukan Nomor Induk Siswa Nasional" maxlength="18">
+                                            @error('nisn')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="nik" class="form-label">NIK</label>
-                                            <input type="number" class="form-control" autofocus required id="nik" name="nik" placeholder="Masukan Nomor Induk Keluarga">
+                                            <label for="nik" class="form-label">NIK<span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" autofocus required id="nik" name="nik" placeholder="Masukan Nomor Induk Keluarga" maxlength="30">
+                                            @error('nik')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="agama" class="form-label">Agama</label>
+                                            <label for="agama" class="form-label">Agama<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" autofocus required id="agama" name="agama" placeholder="Masukan Agama">
+                                            @error('agama')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-7">
-                                            <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                            <label for="tempat_lahir" class="form-label">Tempat Lahir<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" autofocus required name="tempat_lahir" id="tempat_lahir" placeholder="Masukan Tempat Lahir">
+                                            @error('tempat_lahir')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-md-5">
-                                            <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
+                                            <label for="tgl_lahir" class="form-label">Tanggal Lahir<span class="text-danger">*</span></label>
                                             <input type="date" class="form-control" autofocus required id="tgl_lahir" name="tgl_lahir" placeholder="Masukan Tanggal Lahir">
+                                            @error('tgl_lahir')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin<span class="text-danger">*</span></label>
                                             <select id="jenis_kelamin" class="form-select select2" aria-label="jenis_kelamin" name="jenis_kelamin" required>
-                                                <option value="1" selected>Laki - Laki</option>
-                                                <option value="2">One</option>
-                                                <option value="3">Two</option>
-                                                <option value="4">Three</option>
+                                                <option value="laki-laki" selected>Laki - Laki</option>
+                                                <option value="perempuan">Perempuan</option>
                                             </select>
                                         </div>
                                         <div class="col-12">
-                                            <label for="nama_ibu" class="form-label">Nama Ibu</label>
+                                            <label for="nama_ibu" class="form-label">Nama Ibu<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" autofocus required id="nama_ibu" name="nama_ibu" placeholder="Masukan Nama Ibu">
+                                            @error('nama_ibu')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
-                                            <label for="no_hp_ortu" class="form-label">Nomor Telepon Orang Tua</label>
+                                            <label for="no_hp_ortu" class="form-label">Nomor Telepon Orang Tua<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" autofocus required id="no_hp_ortu" name="no_hp_ortu" placeholder="Masukan Nomor Handphone Orang Tua">
+                                            @error('no_hp_ortu')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -184,26 +220,39 @@
                         </div>
                         <div id="data-2" class="w-100" style="display: none;">
                             <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12 pe-4">
+                                <div class="col-lg-6 col-md-12 col-sm-12 pe-lg-4 p-0 px-2">
                                     <div class="row g-3">
                                         <div class="col-12">
                                             <label for="ktp" class="form-label">Upload KTP</label>
                                             <input class="form-control" type="file" id="ktp" name="ktp">
-                                            <div class="uploaded_ktp mt-2 ms-1"></div>
+                                            <div class="uploaded_ktp mt-2 ms-1">
+                                                <img id="ktp_preview" src="#" alt="KTP Preview" style="display: none;max-height:97px;">
+                                            </div>
                                         </div>
                                         <div class="col-12">
                                             <label for="kk" class="form-label">Upload Kartu Keluarga</label>
                                             <input class="form-control" type="file" id="kk" name="kk">
-                                            <div class="uploaded_kk mt-2 ms-1"></div>
+                                            @error('kk')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
+                                            <div class="uploaded_kk mt-2 ms-1">
+                                                <img id="kk_preview" src="#" alt="KK Preview" style="display: none;max-height:97px;">
+                                            </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="ijazah" class="form-label">Upload Ijazah Pendidikan Terakhir</label>
+                                            <label for="ijazah" class="form-label">Upload Ijazah Pendidikan Terakhir<span class="text-danger">*</span></label>
                                             <input class="form-control" type="file" id="ijazah" name="ijazah" required>
-                                            <div class="uploaded_ijazah mt-2 ms-1"></div>
+                                            @error('ijazah')
+                                                <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                                            @enderror
+                                            <div class="uploaded_ijazah mt-2 ms-1">
+                                                <img id="ijazah_preview" src="#" alt="Ijazah Preview" style="display: none;max-height:97px;">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 ps-4">
+                                <hr class="d-lg-none d-block mt-4" style="width: 50%">
+                                <div class="col-lg-6 col-md-12 col-sm-12 ps-lg-4 p-0 px-2 mt-lg-0 mt-3">
                                     <div class="panduan">
                                         <p class="p-0 m-0" style="font-size: 14px;">
                                             <span style="font-size: 14px;font-weight: 600;">Panduan Upload Dokumen/File :</span>
@@ -224,7 +273,7 @@
                                 </div>
                                 <div class="action d-flex align-content-center justify-content-between mt-4 mb-4">
                                     <button type="button" class="btn btn-primary-less-outline mt-4 fw-600 text-primary-less btn-data" data-action="previous" data-show="2">SEBELUMNYA</button>
-                                    <button class="btn btn-primary-less mt-4 fw-600 text-white">KIRIM</button>
+                                    <button type="submit" class="btn btn-primary-less mt-4 fw-600 text-white">KIRIM</button>
                                 </div>
                             </div>
                         </div>
@@ -247,6 +296,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        $(document).ready(function() {
+            if ($(window).width() < 992) {
+                $("#navbar-utama").remove();
+            }
+        });
+    </script>
+
+    <script>
         // Pemilihan Paket
         $('.btn-paket').on('click', function(){
             var nilai = $(this).attr('data-value');
@@ -258,13 +315,13 @@
 
     <script>
         // Validation valid form
-        const inputFields = document.querySelectorAll('input[required]');
-
-        function validateForm() {
+        function validateForm(number) {
+            // const inputFields = document.querySelectorAll('input[required]');
+            const inputFields = $('#data-'+number).find('input[required]').toArray();
             let allFieldsFilled = true;
 
             inputFields.forEach((input) => {
-                if (input.value.trim() === '') {
+                if (input.value == '' || input.value == null) {
                     allFieldsFilled = false;
                 }
             });
@@ -276,15 +333,14 @@
     <script>
         // Navigasi form data
         $('.btn-data').on('click', function(){
-            if (validateForm()) {
-                var action = $(this).attr('data-action');
+            var action = $(this).attr('data-action');
+            var now_show = parseInt($(this).attr('data-show')); //Mengambil form ke berapa yang tampil => 2
+            if (validateForm(now_show)) {
                 if(action == 'previous'){
-                    var now_show = parseInt($(this).attr('data-show')); //Mengambil form ke berapa yang tampil => 2
                     var show = '#data-'+(now_show-1); //membuat format id data untuk show/hide setiap form => #data-1
                     $(show).show();
                     $('#data-'+now_show).hide();
                 }else{
-                    var now_show = parseInt($(this).attr('data-show')); //Mengambil form ke berapa yang tampil => 1
                     var show = '#data-'+(now_show+1); //membuat format id data untuk show/hide setiap form => #data-2
                     $(show).show();
                     $('#data-'+now_show).hide();
@@ -297,7 +353,8 @@
                     customClass: {
                         confirmButton: 'btn btn-primary-less'
                     }
-                })
+                });
+                $('#form-data').submit();
             }
         });
 
@@ -305,6 +362,37 @@
         $(document).ready(function(){
             $('.select2').select2();
         });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Ketika input file diubah
+            $('#ktp').change(function() {
+                $('#ktp_preview').show();
+                readURL(this, '#ktp_preview');
+            });
+            $('#kk').change(function() {
+                $('#kk_preview').show();
+                readURL(this, '#kk_preview');
+            });
+            $('#ijazah').change(function() {
+                $('#ijazah_preview').show();
+                readURL(this, '#ijazah_preview');
+            });
+        });
+        
+        // Fungsi untuk membaca URL file dan menampilkan gambar
+        function readURL(input, previewSelector) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+        
+                reader.onload = function(e) {
+                    $(previewSelector).attr('src', e.target.result);
+                };
+        
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 
 </body>

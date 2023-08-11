@@ -1,60 +1,13 @@
 
-a{
-    text-decoration: none;
+.sosial-media{
+    bottom: 30px;
+    left: 40px;
 }
-
-.btn{
-    width: auto;
-    height: auto;
-    padding: 10px 25px;
-    border-radius: 5px;
-    border: none;
+.sosial-media p{
+    font-size: 12px;
 }
-.btn-primary-dark{
-    background-color: #40513B !important;
-}
-.btn-primary{
-    background-color: #609966 !important;
-}
-.btn-primary-outline{
-    background-color: transparent !important;
-    border: 1px solid #609966 !important;
-    color: #609966 !important;
-}
-.btn-primary-less{
-    background-color: #9DC08B !important;
-}
-.btn-primary-very-less{
-    background-color: #EDF1D6 !important;
-}
-.btn-primary-dark:hover{
-    background-color: #2b3627 !important;
-}
-.btn-primary:hover{
-    background-color: #4d8152 !important;
-}
-.btn-primary-outline:hover{
-    background-color: #4d8152 !important;
-    color: #FFF !important;
-}
-.btn-primary-less:hover{
-    background-color: #8cb07a !important;
-}
-.btn-primary-very-less:hover{
-    background-color: #d9ddc0 !important;
-}
-
-.bg-primary-dark{
-    background-color: #40513B !important;
-}
-.bg-primary{
-    background-color: #609966 !important;
-}
-.bg-primary-less{
-    background-color: #9DC08B !important;
-}
-.bg-primary-very-less{
-    background-color: #EDF1D6 !important;
+.sosial-media p:hover{
+    font-weight: 600;
 }
 
 /* FLICKITY SETTINGS */
@@ -316,3 +269,72 @@ a{
     }
 }
 /* END KONTAK */
+
+
+/* ========================================================= */
+
+/* PENDAFTARAN */
+#pendaftaran{
+    width: 100vw;
+    max-width: 1800px;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    margin: 0 auto;
+    color: #40513B;
+    background-color: #EDF1D6;
+}
+#pendaftaran #navbar-utama{
+    width: 350px;
+    padding: 35px;
+}
+#pendaftaran #content{
+    width: 100%;
+    overflow-y: auto;
+}
+#pendaftaran #content .container{
+    padding: 40px 140px;
+}
+#pendaftaran #content form label{
+    font-size: 12px;
+    font-weight: 600;
+}
+#pendaftaran #content form .data .uploaded_ktp img{
+    /* width: 161px; */
+    max-height: 97px;
+    /* border: 2px solid #9DC08B; */
+    border-radius: 5px;
+}
+#pendaftaran #content form .data .panduan{
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    padding: 20px;
+}
+#pendaftaran #content .form-control,#pendaftaran #content .form-select,.select2-container .select2-selection--single{
+    padding: 0.375rem 0.75rem !important;
+    border-radius: 5px !important;
+    height: 35px !important;
+    border: 1px solid rgba(64, 81, 59, 0.8) !important;
+    font-size: 14px !important;
+    box-shadow: none;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 34px !important;
+}
+.select2-container .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    line-height: unset !important;
+}
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
+    background-color: #9DC08B !important;
+}
+
+@media (max-width:768px){
+    #pendaftaran #content .container {
+        padding: 40px 20px;
+    }
+}
+/* END PENDAFTARAN */

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> <!-- HAPUS BAGIAN INI -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="pendaftaran sekolah, pkbm, winaya bakti, daftar sekolah terbaik, daftar sekolah hebat, daftar sekolah mantap, daftar sekolah indenesia, paket a, paket b, paket c, paket d, daftar sekolah paket banyusari, daftar sekolah paket karawang, sekolah paket indonesia">
     <meta name="description" content="Bergabunglah dengan kami di PKBM Winaya Bakti dan rasakan pengalaman belajar yang menyenangkan, inspiratif, dan membawa dampak positif bagi masa depan Anda. Bersama, mari kita jadikan pendidikan sebagai alat untuk mencapai impian dan membangun generasi penerus bangsa yang unggul dan berdaya saing global.">
@@ -43,19 +42,19 @@
             </div>
             <div class="sosial-media position-absolute">
                 <div class="d-flex flex-column">
-                    <a href="">
+                    <a href="https://instagram.com/winayabakti" target="_BLANK">
                         <img width="20" src="{{ asset('assets/img/sosmed/instagram.png') }}" alt="Sosisal Media Instagram PKBM Winaya Bakti">
                         <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black">Instagram</p>
                     </a>
-                    <a href="">
+                    <a href="https://youtube.com/@PKBMWINAYABAKTI" target="_BLANK">
                         <img width="20" src="{{ asset('assets/img/sosmed/youtube.png') }}" alt="Sosisal Media Youtube PKBM Winaya Bakti">
                         <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black">Youtube</p>
                     </a>
-                    <a href="">
+                    <a href="https://www.facebook.com/profile.php?id=100095358017708" target="_BLANK">
                         <img width="20" src="{{ asset('assets/img/sosmed/facebook.png') }}" alt="Sosisal Media Facebook PKBM Winaya Bakti">
                         <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black">Facebook</p>
                     </a>
-                    <a href="">
+                    <a href="https://api.whatsapp.com/send?phone=6285894240856">
                         <img width="20" src="{{ asset('assets/img/sosmed/whatsapp.png') }}" alt="Sosisal Media Whatsapp PKBM Winaya Bakti">
                         <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black">+62 858-9424-0856</p>
                     </a>

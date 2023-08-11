@@ -6,6 +6,7 @@ use App\Models\Kabupaten;
 use App\Models\Provinsi;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
 class PageController extends Controller
@@ -68,12 +69,12 @@ class PageController extends Controller
         if($request->file('ktp')){
             $extensi_ktp = $request->file('ktp')->getClientOriginalExtension();
             $nama_ktp = time().'_'.$request->nik.'.'.$extensi_ktp;
-            $folderTujuanKTP = 'users/' . $request->nisn.'/ktp';
+            $folderTujuanKTP = 'users/' . $request->nik.'/ktp';
         }
         if($request->file('kk')){
             $extensi_kk = $request->file('kk')->getClientOriginalExtension();
             $nama_kk = time().'_'.$request->nik.'.'.$extensi_kk;
-            $folderTujuanKK = 'users/' . $request->nisn.'/kartu-keluarga';
+            $folderTujuanKK = 'users/' . $request->nik.'/kartu-keluarga';
         }
         $extensi_ijazah = $request->file('ijazah')->getClientOriginalExtension();
         $nama_ijazah = time().'_'.$request->nisn.'.'.$extensi_ijazah;
@@ -103,17 +104,45 @@ class PageController extends Controller
                 'ijazah_pendidikan' => $nama_ijazah
             ]);
             if($request->file('ktp')){
-                $request->file('ktp')->storeAs('storage/'.$folderTujuanKTP, $nama_ktp);
+                $request->file('ktp')->storeAs('public/'.$folderTujuanKTP, $nama_ktp);
             }
             if($request->file('kk')){
-                $request->file('kk')->storeAs('storage/'.$folderTujuanKK, $nama_kk);
+                $request->file('kk')->storeAs('public/'.$folderTujuanKK, $nama_kk);
             }
-            $request->file('ijazah')->storeAs('storage/'.$folderTujuanIJAZAH, $nama_ijazah);
+            $request->file('ijazah')->storeAs('public/'.$folderTujuanIJAZAH, $nama_ijazah);
             
         } catch (Exception $e) {
             return view('pendaftaran')->with('error', 'Maaf, terdapat kesalahan teknis');
         }
 
         return view('index', $data)->with('success', 'Berhasil daftar, mohon tunggu konfirmasi admin sekolah menghubungi..');
+    }
+
+    public function sign_admin() {
+        $data = [
+            'title' =>  'Signin'
+        ];
+        return view('sign', $data);
+    }
+
+    public function sign_admin_post( Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ],[
+            'required' => 'Kolom :attribute wajib diisi',
+        ]);
+
+        // Proses login
+        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])){
+            return redirect()->route('pkbm-winaya-bakti.index');
+        } else {
+            // Autentikasi gagal
+            return redirect()->back()->with('error', 'Email atau password salah.');
+        }
+    }
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('index');
     }
 }

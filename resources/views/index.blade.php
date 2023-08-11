@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> <!-- HAPUS BAGIAN INI -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="pkbm, winaya bakti, sekolah terbaik, sekolah hebat, sekolah mantap, sekolah indenesia, paket a, paket b, paket c, paket d, sekolah paket banyusari, sekollah paket karawang, sekolah paket indonesia">
     <meta name="description" content="Bergabunglah dengan kami di PKBM Winaya Bakti dan rasakan pengalaman belajar yang menyenangkan, inspiratif, dan membawa dampak positif bagi masa depan Anda. Bersama, mari kita jadikan pendidikan sebagai alat untuk mencapai impian dan membangun generasi penerus bangsa yang unggul dan berdaya saing global.">
@@ -251,28 +250,30 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 mt-lg-0 mt-3">
                         <div class="alamat mb-4">
                             <h5 class="fw-700">Alamat</h5>
-                            <p class="fw-400">Kamp. Jungklang RT. 01 RW.08, Desa Jayamukti, Kec. Banyusari, Kab. Karawang, 41375</p>
+                            <p class="fw-400">Kamp. Jungklang RT. 01 RW.08, Desa Jayamukti, Kec. Banyusari, Kab. Karawang, 41375<br><a class="text-dark fw-600 fs-12" href="https://goo.gl/maps/28iKipN66t9QEUp78" target="_BLANK">Lihat Peta</a></p>
                         </div>
                         <div class="kontak-sekolah">
                             <h5 class="fw-700">Kontak Sekolah</h5>
-                            <p class="fw-400">No. HP : 085659944490 <span class="d-lg-inline-block d-none">     |     </span> Email : pkbmwinayabaktiofficial@gmail.com</p>
+                            <p class="fw-400">No. HP : <a class="text-dark" href="https://api.whatsapp.com/send?phone=6285659944490" target="_BLANK">085659944490</a><br>Email : pkbmwinayabaktiofficial@gmail.com</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 ps-lg-5">
                         <h5 class="fw-700">Sosial Media</h5>
-                        <div class="d-flex flex-column">
-                            <a href="">
-                                <img width="20" src="{{ asset('assets/img/sosmed/instagram.png') }}" alt="Sosisal Media Instagram PKBM Winaya Bakti">
-                                <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black">Instagram</p>
-                            </a>
-                            <a href="">
-                                <img width="20" src="{{ asset('assets/img/sosmed/youtube.png') }}" alt="Sosisal Media Youtube PKBM Winaya Bakti">
-                                <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black">Youtube</p>
-                            </a>
-                            <a href="">
-                                <img width="20" src="{{ asset('assets/img/sosmed/facebook.png') }}" alt="Sosisal Media Facebook PKBM Winaya Bakti">
-                                <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black">Facebook</p>
-                            </a>
+                        <div class="sosial-media">
+                            <div class="d-flex flex-column">
+                                <a href="https://instagram.com/winayabakti" target="_BLANK">
+                                    <img width="20" src="{{ asset('assets/img/sosmed/instagram.png') }}" alt="Sosisal Media Instagram PKBM Winaya Bakti">
+                                    <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black fs-16">Instagram</p>
+                                </a>
+                                <a href="https://youtube.com/@PKBMWINAYABAKTI" target="_BLANK">
+                                    <img width="20" src="{{ asset('assets/img/sosmed/youtube.png') }}" alt="Sosisal Media Youtube PKBM Winaya Bakti">
+                                    <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black fs-16">Youtube</p>
+                                </a>
+                                <a href="https://www.facebook.com/profile.php?id=100095358017708" target="_BLANK">
+                                    <img width="20" src="{{ asset('assets/img/sosmed/facebook.png') }}" alt="Sosisal Media Facebook PKBM Winaya Bakti">
+                                    <p class="m-0 p-0 mb-1 d-inline-block fw-400 ms-1 text-black fs-16">Facebook</p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -288,6 +289,9 @@
 
     <!-- Flickity -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    {{-- SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     @if(session('error'))
         <script>
@@ -302,7 +306,8 @@
                 });
             })
         </script>
-    @else
+    @endif
+    @if(session('success'))
         <script>
             $(document).ready(function(){
                 Swal.fire({
@@ -315,7 +320,6 @@
                 });
             })
         </script>
-
     @endif
 
     {{-- CUSTOM JavaScript --}}

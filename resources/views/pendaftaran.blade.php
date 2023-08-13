@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3ETDJWZJ5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H3ETDJWZJ5');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -29,6 +39,11 @@
 <body>
     <div id="pendaftaran" class="d-flex flex-row justify-content-center">
         <nav class="nav flex-column align-items-center position-relative" id="navbar-utama">
+            <a href="{{ route('index') }}" class="mb-3 d-block nav-link text-left w-100 text-primary fs-14">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                </svg>
+              kembali</a>
             <div class="d-flex align-items-center justify-content-start">
                 <img width="58" height="58" class="me-2" src="{{ asset('assets/icon.png') }}" alt="Logo PKBM Winaya bakti">
                 <img width="58" height="58" src="{{ asset('assets/icon-2.png') }}" alt="Logo 2 PKBM Winaya bakti">
@@ -70,7 +85,11 @@
                             <img width="58" height="58" class="me-2" src="{{ asset('assets/icon.png') }}" alt="Logo PKBM Winaya bakti">
                             <img width="58" height="58" src="{{ asset('assets/icon-2.png') }}" alt="Logo 2 PKBM Winaya bakti">
                         </div>
-                        <h5 class="text-center fw-700 mb-5">FORMULIR PENDAFTARAN<br>SISWA/I BARU PKBM WINAYA BAKTI<br>TAHUN AJARAN 2023/2024</h5>
+                        @php
+                            $year = date("Y");
+                            $nextYear = date("Y", strtotime("+1 year"));
+                        @endphp
+                        <h5 class="text-center fw-700 mb-5">FORMULIR PENDAFTARAN<br>SISWA/I BARU PKBM WINAYA BAKTI<br>TAHUN AJARAN {{ $year }}/{{ $nextYear }}</h5>
                         <div class="d-lg-none d-block pilihan-paket mt-5">
                             <h6 class="fw-700 text-center">PILIHAN PAKET</h6>
                             <div class="d-flex align-items-center justify-content-center">
@@ -92,7 +111,7 @@
                                         <div class="col-12">
                                             <label for="nama_lengkap" class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" autofocus required id="nama_lengkap" name="nama_lengkap" placeholder="Masukan Nama Lengkap">
-                                            @error('nama')
+                                            @error('nama_lengkap')
                                                 <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
                                             @enderror
                                         </div>

@@ -85,7 +85,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">
-                        <div class="kotak text-center w-25">
+                        <div class="kotak text-center w-100">
                             <p class="fw-600">Total Siswa Terdaftar</p>
                             <span>{{ count($siswa) }}</span>
                         </div>

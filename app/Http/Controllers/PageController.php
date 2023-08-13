@@ -119,6 +119,10 @@ class PageController extends Controller
     }
 
     public function sign_admin() {
+        if(Auth::guard('admin')->check()){
+            return redirect()->route('pkbm-winaya-bakti.index');
+        }
+
         $data = [
             'title' =>  'Signin'
         ];
@@ -142,7 +146,7 @@ class PageController extends Controller
         }
     }
     public function logout() {
-        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect()->route('index');
     }
 }

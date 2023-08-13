@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3ETDJWZJ5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H3ETDJWZJ5');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="keywords" content="pkbm, winaya bakti, sekolah terbaik, sekolah hebat, sekolah mantap, sekolah indenesia, paket a, paket b, paket c, paket d, sekolah paket banyusari, sekollah paket karawang, sekolah paket indonesia">
+    <meta name="keywords" content="pkbm,pkbm winaya bakti,winaya bakti,sekolah terbaik,sekolah hebat,sekolah mantap,sekolah indenesia,paket a,paket b,paket c,paket d,sekolah paket banyusari,sekolah paket karawang,sekolah paket indonesia">
     <meta name="description" content="Bergabunglah dengan kami di PKBM Winaya Bakti dan rasakan pengalaman belajar yang menyenangkan, inspiratif, dan membawa dampak positif bagi masa depan Anda. Bersama, mari kita jadikan pendidikan sebagai alat untuk mencapai impian dan membangun generasi penerus bangsa yang unggul dan berdaya saing global.">
     <meta property="og:title" content="{{ $title }}">
     <meta property="og:description" content="Bergabunglah dengan kami di PKBM Winaya Bakti dan rasakan pengalaman belajar yang menyenangkan, inspiratif, dan membawa dampak positif bagi masa depan Anda. Bersama, mari kita jadikan pendidikan sebagai alat untuk mencapai impian dan membangun generasi penerus bangsa yang unggul dan berdaya saing global.">

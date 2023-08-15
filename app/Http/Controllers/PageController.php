@@ -36,7 +36,7 @@ class PageController extends Controller
         ];
 
         $request->validate([
-            'nisn' => 'required|unique:siswa|max:25',
+            // 'nisn' => 'required|unique:siswa|max:25',
             'nik' => 'required|unique:siswa|max:30',
             'nama_lengkap' => 'required|max:255',
             'email' => 'required|email|max:255',

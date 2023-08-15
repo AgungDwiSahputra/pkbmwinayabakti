@@ -175,7 +175,7 @@
                                     <div class="row g-3">
                                         <div class="col-12">
                                             <label for="nisn" class="form-label">NISN<span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" autofocus required id="nisn" name="nisn" placeholder="Masukan Nomor Induk Siswa Nasional" maxlength="18">
+                                            <input type="number" class="form-control" autofocus id="nisn" name="nisn" placeholder="Masukan Nomor Induk Siswa Nasional" maxlength="18">
                                             @error('nisn')
                                                 <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
                                             @enderror

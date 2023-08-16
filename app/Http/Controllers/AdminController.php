@@ -166,7 +166,7 @@ class AdminController extends Controller
                 'siswa.ijazah_pendidikan',
                 'pendaftaran.status'
             )
-        ->where('nisn', $request->nisn)
+        ->where('nik', $request->nik)
         ->first();
 
         $html = '

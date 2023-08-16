@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Kabupaten;
 use App\Models\Pendaftaran;
-use App\Models\Provinsi;
 use App\Models\Siswa;
 use App\Models\UserAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Validator;
 
 class PageController extends Controller
 {
@@ -104,71 +102,71 @@ class PageController extends Controller
             $folderTujuanKK = 'users/' . $request->nik.'/kartu-keluarga';
         }
 
+        $siswa = new Siswa;
         if($request->paket != 'a'){
             $extensi_ijazah = $request->file('ijazah')->getClientOriginalExtension();
             $nama_ijazah = time().'_'.$request->nisn.'.'.$extensi_ijazah;
             $folderTujuanIJAZAH = 'users/' . $request->nisn.'/ijazah';
-
-            $data =[
-                'nisn' => $request->nisn,
-                'nik' => $request->nik,
-                'nama' => ucwords($request->nama_lengkap),
-                'email' => $request->email,
-                'no_telp' => $request->no_hp,
-                'id_provinsi' => $id_provinsi,
-                'id_kabupaten' => $id_kabupaten,
-                'kode_pos' => $request->kode_pos,
-                'alamat_lengkap' => $request->alamat_lengkap,
-                'kewarganegaraan' => $request->kewarganegaraan,
-                'pendidikan_terakhir' => $request->pendidikan_akhir,
-                'agama' => ucwords($request->agama),
-                'tempat_lahir' => ucfirst($request->tempat_lahir),
-                'tanggal_lahir' => $request->tgl_lahir,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'nama_ibu' => ucwords($request->tempat_lahir),
-                'no_telp_ortu' => $request->no_hp_ortu,
-                'ktp' => $nama_ktp,
-                'kartu_keluarga' => $nama_kk,
-                'ijazah_pendidikan' => $nama_ijazah
-            ];
+            
+            $siswa->nisn = $request->nisn;
+            $siswa->nik = $request->nik;
+            $siswa->nama = ucwords($request->nama_lengkap);
+            $siswa->email = $request->email;
+            $siswa->no_telp = $request->no_hp;
+            $siswa->id_provinsi = $id_provinsi;
+            $siswa->id_kabupaten = $id_kabupaten;
+            $siswa->kode_pos = $request->kode_pos;
+            $siswa->alamat_lengkap = $request->alamat_lengkap;
+            $siswa->kewarganegaraan = $request->kewarganegaraan;
+            $siswa->pendidikan_terakhir = $request->pendidikan_akhir;
+            $siswa->agama = ucwords($request->agama);
+            $siswa->tempat_lahir = ucfirst($request->tempat_lahir);
+            $siswa->tanggal_lahir = $request->tgl_lahir;
+            $siswa->jenis_kelamin = $request->jenis_kelamin;
+            $siswa->nama_ibu = ucwords($request->nama_ibu);
+            $siswa->no_telp_ortu = $request->no_hp_ortu;
+            $siswa->ktp = $nama_ktp;
+            $siswa->kartu_keluarga = $nama_kk;
+            $siswa->ijazah_pendidikan = $nama_ijazah;
+            $siswa->save();
         }else{
-            $data = [
-                'nisn' => ($request->nisn != null || $request->nisn != '') ? $request->nisn : '-',
-                'nik' => $request->nik,
-                'nama' => ucwords($request->nama_lengkap),
-                'email' => $request->email,
-                'no_telp' => $request->no_hp,
-                'id_provinsi' => $id_provinsi,
-                'id_kabupaten' => $id_kabupaten,
-                'kode_pos' => $request->kode_pos,
-                'alamat_lengkap' => $request->alamat_lengkap,
-                'kewarganegaraan' => $request->kewarganegaraan,
-                'pendidikan_terakhir' => $request->pendidikan_akhir,
-                'agama' => ucwords($request->agama),
-                'tempat_lahir' => ucfirst($request->tempat_lahir),
-                'tanggal_lahir' => $request->tgl_lahir,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'nama_ibu' => ucwords($request->nama_ibu),
-                'no_telp_ortu' => $request->no_hp_ortu,
-                'ktp' => $nama_ktp,
-                'kartu_keluarga' => $nama_kk,
-                'ijazah_pendidikan' => $nama_ijazah
-            ];
+            $siswa->nisn = $request->nisn;
+            $siswa->nik = $request->nik;
+            $siswa->nama = ucwords($request->nama_lengkap);
+            $siswa->email = $request->email;
+            $siswa->no_telp = $request->no_hp;
+            $siswa->id_provinsi = $id_provinsi;
+            $siswa->id_kabupaten = $id_kabupaten;
+            $siswa->kode_pos = $request->kode_pos;
+            $siswa->alamat_lengkap = $request->alamat_lengkap;
+            $siswa->kewarganegaraan = $request->kewarganegaraan;
+            $siswa->pendidikan_terakhir = $request->pendidikan_akhir;
+            $siswa->agama = ucwords($request->agama);
+            $siswa->tempat_lahir = ucfirst($request->tempat_lahir);
+            $siswa->tanggal_lahir = $request->tgl_lahir;
+            $siswa->jenis_kelamin = $request->jenis_kelamin;
+            $siswa->nama_ibu = ucwords($request->nama_ibu);
+            $siswa->no_telp_ortu = $request->no_hp_ortu;
+            $siswa->ktp = $nama_ktp;
+            $siswa->kartu_keluarga = $nama_kk;
+            $siswa->ijazah_pendidikan = $nama_ijazah;
+            $siswa->save();
         }
 
         try {
-            // Siswa::insert($data);
-            $id = Siswa::insertGetId($data);
+            // Mengambil id dari data yang baru di insert
+            $id = $siswa->id;
 
             $admin = UserAdmin::first();
-            $id_admin = $admin->id;
+            $id_admin = $admin->id; //Mengambil id dari admin
 
-            Pendaftaran::insert([
-                'paket' => ucwords($request->paket),
-                'id_user' => $id,
-                'status' => 'Belum Konfirmasi',
-                'id_admin' => $id_admin
-            ]);
+            $pendaftaran = new Pendaftaran;
+            $pendaftaran->paket = ucwords($request->paket);
+            $pendaftaran->id_user = $id;
+            $pendaftaran->status = 'Belum Konfirmasi';
+            $pendaftaran->id_admin = $id_admin;
+            $pendaftaran->save();
+            
             if($request->file('ktp')){
                 $request->file('ktp')->storeAs('public/'.$folderTujuanKTP, $nama_ktp);
             }
@@ -184,7 +182,7 @@ class PageController extends Controller
             return view('pendaftaran')->with('error', 'Maaf, terdapat kesalahan teknis');
         }
 
-        return view('index', ['title' => 'PKBM Winaya Bakti'])->with('success', 'Berhasil daftar, mohon tunggu konfirmasi admin sekolah menghubungi..');
+        return redirect()->route('index')->with(['title' => 'PKBM Winaya Bakti','success', 'Berhasil daftar, mohon tunggu konfirmasi admin sekolah menghubungi..']);
     }
 
     public function sign_admin() {

@@ -174,7 +174,7 @@
                                 <div class="col-lg-6 col-md-12 col-sm-12 ps-lg-4 p-0 px-2 mt-lg-0 mt-3">
                                     <div class="row g-3">
                                         <div class="col-12">
-                                            <label for="nisn" class="form-label">NISN<span class="text-danger">*</span></label>
+                                            <label for="nisn" class="form-label">NISN</label>
                                             <input type="number" class="form-control" autofocus id="nisn" name="nisn" placeholder="Masukan Nomor Induk Siswa Nasional" maxlength="18">
                                             @error('nisn')
                                                 <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
@@ -258,8 +258,8 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="ijazah" class="form-label">Upload Ijazah Pendidikan Terakhir<span class="text-danger">*</span></label>
-                                            <input class="form-control" type="file" id="ijazah" name="ijazah" required>
+                                            <label for="ijazah" class="form-label">Upload Ijazah Pendidikan Terakhir</label>
+                                            <input class="form-control" type="file" id="ijazah" name="ijazah">
                                             @error('ijazah')
                                                 <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
                                             @enderror

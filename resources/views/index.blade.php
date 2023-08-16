@@ -309,7 +309,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Terdapat Kesalahan',
-                    text: {{session('error')}},
+                    text: "{{session('error')}}",
                     customClass: {
                         confirmButton: 'btn btn-primary-less'
                     }
@@ -323,7 +323,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil',
-                    text: {{session('success')}},
+                    text: "{{session('success')}}",
                     customClass: {
                         confirmButton: 'btn btn-primary-less'
                     }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kabupaten;
+use App\Models\Pendaftaran;
 use App\Models\Provinsi;
 use App\Models\Siswa;
+use App\Models\UserAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
@@ -31,41 +33,66 @@ class PageController extends Controller
     }
 
     public function StoreRegister(Request $request) {
-        $data = [
-            'title' => 'PKBM Winaya Bakti',
-        ];
-
-        $request->validate([
-            // 'nisn' => 'required|unique:siswa|max:25',
-            'nik' => 'required|unique:siswa|max:30',
-            'nama_lengkap' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'no_hp' => 'required|max:15',
-            'kode_pos' => 'required|max:25',
-            'alamat_lengkap' => 'required|max:255',
-            'kewarganegaraan' => 'required|max:255',
-            'pendidikan_akhir' => 'required|max:255',
-            'agama' => 'required|max:255',
-            'tempat_lahir' => 'required|max:255',
-            'tgl_lahir' => 'required',
-            'jenis_kelamin' => 'required|max:255',
-            'nama_ibu' => 'required|max:255',
-            'no_hp_ortu' => 'required|max:15',
-            'ktp' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'kk' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'ijazah' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ],[
-            'required' => 'Kolom :attribute wajib diisi',
-            'unique' => 'Sudah tersedia',
-            'image' => 'File yang dikirim harus berupa gambar dengan ekstensi jpeg,png,jpg.',
-            'max' => 'Ukuran gambar tidak boleh melebihi 2mb'
-        ]);
+        if($request->paket != 'a'){
+            $request->validate([
+                'nisn' => 'required|unique:siswa|max:25',
+                'nik' => 'required|unique:siswa|max:30',
+                'nama_lengkap' => 'required|max:255',
+                'email' => 'required|email|max:255',
+                'no_hp' => 'required|max:15',
+                'kode_pos' => 'required|max:25',
+                'alamat_lengkap' => 'required|max:255',
+                'kewarganegaraan' => 'required|max:255',
+                'pendidikan_akhir' => 'required|max:255',
+                'agama' => 'required|max:255',
+                'tempat_lahir' => 'required|max:255',
+                'tgl_lahir' => 'required',
+                'jenis_kelamin' => 'required|max:255',
+                'nama_ibu' => 'required|max:255',
+                'no_hp_ortu' => 'required|max:15',
+                'ktp' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'kk' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'ijazah' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            ],[
+                'required' => 'Kolom :attribute wajib diisi',
+                'unique' => 'Sudah tersedia',
+                'image' => 'File yang dikirim harus berupa gambar dengan ekstensi jpeg,png,jpg.',
+                'max' => 'Ukuran gambar tidak boleh melebihi 2mb'
+            ]);
+        }else{
+            $request->validate([
+                // 'nisn' => 'required|unique:siswa|max:25',
+                'nik' => 'required|unique:siswa|max:30',
+                'nama_lengkap' => 'required|max:255',
+                'email' => 'required|email|max:255',
+                'no_hp' => 'required|max:15',
+                'kode_pos' => 'required|max:25',
+                'alamat_lengkap' => 'required|max:255',
+                'kewarganegaraan' => 'required|max:255',
+                'pendidikan_akhir' => 'required|max:255',
+                'agama' => 'required|max:255',
+                'tempat_lahir' => 'required|max:255',
+                'tgl_lahir' => 'required',
+                'jenis_kelamin' => 'required|max:255',
+                'nama_ibu' => 'required|max:255',
+                'no_hp_ortu' => 'required|max:15',
+                'ktp' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'kk' => 'image|mimes:jpeg,png,jpg|max:2048',
+                // 'ijazah' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            ],[
+                'required' => 'Kolom :attribute wajib diisi',
+                'unique' => 'Sudah tersedia',
+                'image' => 'File yang dikirim harus berupa gambar dengan ekstensi jpeg,png,jpg.',
+                'max' => 'Ukuran gambar tidak boleh melebihi 2mb'
+            ]);
+        }
 
         $explode = explode('-',$request->kota);
         $id_provinsi = $explode[1];
         $id_kabupaten = $explode[0];
         $nama_ktp = '-';
         $nama_kk = '-';
+        $nama_ijazah = '-';
         if($request->file('ktp')){
             $extensi_ktp = $request->file('ktp')->getClientOriginalExtension();
             $nama_ktp = time().'_'.$request->nik.'.'.$extensi_ktp;
@@ -76,12 +103,13 @@ class PageController extends Controller
             $nama_kk = time().'_'.$request->nik.'.'.$extensi_kk;
             $folderTujuanKK = 'users/' . $request->nik.'/kartu-keluarga';
         }
-        $extensi_ijazah = $request->file('ijazah')->getClientOriginalExtension();
-        $nama_ijazah = time().'_'.$request->nisn.'.'.$extensi_ijazah;
-        $folderTujuanIJAZAH = 'users/' . $request->nisn.'/ijazah';
 
-        try {
-            Siswa::insert([
+        if($request->paket != 'a'){
+            $extensi_ijazah = $request->file('ijazah')->getClientOriginalExtension();
+            $nama_ijazah = time().'_'.$request->nisn.'.'.$extensi_ijazah;
+            $folderTujuanIJAZAH = 'users/' . $request->nisn.'/ijazah';
+
+            $data =[
                 'nisn' => $request->nisn,
                 'nik' => $request->nik,
                 'nama' => ucwords($request->nama_lengkap),
@@ -102,6 +130,44 @@ class PageController extends Controller
                 'ktp' => $nama_ktp,
                 'kartu_keluarga' => $nama_kk,
                 'ijazah_pendidikan' => $nama_ijazah
+            ];
+        }else{
+            $data = [
+                'nisn' => ($request->nisn != null || $request->nisn != '') ? $request->nisn : '-',
+                'nik' => $request->nik,
+                'nama' => ucwords($request->nama_lengkap),
+                'email' => $request->email,
+                'no_telp' => $request->no_hp,
+                'id_provinsi' => $id_provinsi,
+                'id_kabupaten' => $id_kabupaten,
+                'kode_pos' => $request->kode_pos,
+                'alamat_lengkap' => $request->alamat_lengkap,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'pendidikan_terakhir' => $request->pendidikan_akhir,
+                'agama' => ucwords($request->agama),
+                'tempat_lahir' => ucfirst($request->tempat_lahir),
+                'tanggal_lahir' => $request->tgl_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'nama_ibu' => ucwords($request->nama_ibu),
+                'no_telp_ortu' => $request->no_hp_ortu,
+                'ktp' => $nama_ktp,
+                'kartu_keluarga' => $nama_kk,
+                'ijazah_pendidikan' => $nama_ijazah
+            ];
+        }
+
+        try {
+            // Siswa::insert($data);
+            $id = Siswa::insertGetId($data);
+
+            $admin = UserAdmin::first();
+            $id_admin = $admin->id;
+
+            Pendaftaran::insert([
+                'paket' => ucwords($request->paket),
+                'id_user' => $id,
+                'status' => 'Belum Konfirmasi',
+                'id_admin' => $id_admin
             ]);
             if($request->file('ktp')){
                 $request->file('ktp')->storeAs('public/'.$folderTujuanKTP, $nama_ktp);
@@ -109,13 +175,16 @@ class PageController extends Controller
             if($request->file('kk')){
                 $request->file('kk')->storeAs('public/'.$folderTujuanKK, $nama_kk);
             }
-            $request->file('ijazah')->storeAs('public/'.$folderTujuanIJAZAH, $nama_ijazah);
+
+            if($request->paket != 'a'){
+                $request->file('ijazah')->storeAs('public/'.$folderTujuanIJAZAH, $nama_ijazah);
+            }
             
         } catch (Exception $e) {
             return view('pendaftaran')->with('error', 'Maaf, terdapat kesalahan teknis');
         }
 
-        return view('index', $data)->with('success', 'Berhasil daftar, mohon tunggu konfirmasi admin sekolah menghubungi..');
+        return view('index', ['title' => 'PKBM Winaya Bakti'])->with('success', 'Berhasil daftar, mohon tunggu konfirmasi admin sekolah menghubungi..');
     }
 
     public function sign_admin() {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendaftaran;
 use App\Models\Siswa;
 use App\Models\UserAdmin;
 use Illuminate\Http\Request;
@@ -20,7 +21,35 @@ class AdminController extends Controller
             return redirect()->route('sign.admin');
         }
 
-        $siswa = Siswa::paginate(10);
+        $siswa = Pendaftaran::join('siswa','siswa.id','=','pendaftaran.id_user')
+            ->join('provinsi','provinsi.id','=','siswa.id_provinsi')
+            ->join('kabupaten','kabupaten.id','=','siswa.id_kabupaten')
+            ->select(
+                'pendaftaran.id',
+                'pendaftaran.paket',
+                'siswa.nisn',
+                'siswa.nik',
+                'siswa.nama',
+                'siswa.email',
+                'siswa.no_telp',
+                'provinsi.nama as provinsi',
+                'kabupaten.nama as kabupaten',
+                'siswa.kode_pos',
+                'siswa.alamat_lengkap',
+                'siswa.kewarganegaraan',
+                'siswa.pendidikan_terakhir',
+                'siswa.agama',
+                'siswa.tempat_lahir',
+                'siswa.tanggal_lahir',
+                'siswa.jenis_kelamin',
+                'siswa.nama_ibu',
+                'siswa.no_telp_ortu',
+                'siswa.ktp',
+                'siswa.kartu_keluarga',
+                'siswa.ijazah_pendidikan',
+                'pendaftaran.status'
+            )
+            ->paginate(10);
 
         $data = [
             'title' => 'Admin | PKBM Winaya Bakti',
@@ -109,35 +138,43 @@ class AdminController extends Controller
 
     public function detail_siswa(Request $request) {
 
-        $siswa = Siswa::join('provinsi', 'provinsi.id','=','siswa.id_provinsi')
-        ->join('kabupaten', 'kabupaten.id','=','siswa.id_kabupaten')
-        ->select([
-            'siswa.nisn',
-            'siswa.nik',
-            'siswa.nama as nama_siswa',
-            'siswa.email',
-            'siswa.no_telp',
-            'siswa.kode_pos',
-            'siswa.alamat_lengkap',
-            'siswa.kewarganegaraan',
-            'siswa.pendidikan_terakhir',
-            'siswa.agama',
-            'siswa.tempat_lahir',
-            'siswa.tanggal_lahir',
-            'siswa.jenis_kelamin',
-            'siswa.nama_ibu',
-            'siswa.no_telp_ortu',
-            'siswa.ktp',
-            'siswa.kartu_keluarga',
-            'siswa.ijazah_pendidikan',
-            'provinsi.nama as provinsi',
-            'kabupaten.nama as kabupaten'
-        ])
+        $siswa = Pendaftaran::join('siswa','siswa.id','=','pendaftaran.id_user')
+            ->join('provinsi','provinsi.id','=','siswa.id_provinsi')
+            ->join('kabupaten','kabupaten.id','=','siswa.id_kabupaten')
+            ->select(
+                'pendaftaran.id',
+                'pendaftaran.paket',
+                'siswa.nisn',
+                'siswa.nik',
+                'siswa.nama',
+                'siswa.email',
+                'siswa.no_telp',
+                'provinsi.nama as provinsi',
+                'kabupaten.nama as kabupaten',
+                'siswa.kode_pos',
+                'siswa.alamat_lengkap',
+                'siswa.kewarganegaraan',
+                'siswa.pendidikan_terakhir',
+                'siswa.agama',
+                'siswa.tempat_lahir',
+                'siswa.tanggal_lahir',
+                'siswa.jenis_kelamin',
+                'siswa.nama_ibu',
+                'siswa.no_telp_ortu',
+                'siswa.ktp',
+                'siswa.kartu_keluarga',
+                'siswa.ijazah_pendidikan',
+                'pendaftaran.status'
+            )
         ->where('nisn', $request->nisn)
         ->first();
 
         $html = '
         <table class="table table-hover">
+            <tr>
+                <th>Pilihan Paket</th>
+                <td>: '.$siswa->paket.'</td>
+            </tr>
             <tr>
                 <th>NISN</th>
                 <td>: '.$siswa->nisn.'</td>
@@ -148,7 +185,7 @@ class AdminController extends Controller
             </tr>
             <tr>
                 <th>Nama</th>
-                <td>: '.$siswa->nama_siswa.'</td>
+                <td>: '.$siswa->nama.'</td>
             </tr>
             <tr>
                 <th>Email</th>

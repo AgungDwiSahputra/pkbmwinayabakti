@@ -105,7 +105,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>NISN</th>
+                                    <th>NIK</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Nomor Telepon</th>
@@ -117,7 +117,7 @@
                                 @foreach($siswa as $no => $data)
                                     <tr>
                                         <td>{{ $no+1 }}</td>
-                                        <th onclick="detailedSiswa('{{ $data->nisn }}','{{ $data->nik }}')" class="text-primary" style="cursor: pointer">{{ $data->nisn }}</th>
+                                        <th onclick="detailedSiswa('{{ $data->nik }}')" class="text-primary" style="cursor: pointer">{{ $data->nik }}</th>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->no_telp }}</td>
@@ -185,8 +185,7 @@
     </script>
 
     <script>
-        function detailedSiswa(no_nisn, no_nik) {
-            var nisn = no_nisn;
+        function detailedSiswa(no_nik) {
             var nik = no_nik;
             var target = '#modal-detailedSiswa';
             // Make an Ajax request to retrieve student data
@@ -197,7 +196,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
-                    nisn: nisn,
                     nik: nik
                 },
                 beforeSend: function () {

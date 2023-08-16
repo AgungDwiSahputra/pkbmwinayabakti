@@ -182,7 +182,7 @@ class PageController extends Controller
             return view('pendaftaran')->with('error', 'Maaf, terdapat kesalahan teknis');
         }
 
-        return view('index', ['title' => 'PKBM Winaya Bakti'])->with('success', 'Berhasil daftar, mohon tunggu konfirmasi admin sekolah menghubungi..');
+        return redirect()->route('index')->with(['title' => 'PKBM Winaya Bakti','success', 'Berhasil daftar, mohon tunggu konfirmasi admin sekolah menghubungi..']);
     }
 
     public function sign_admin() {
